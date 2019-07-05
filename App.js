@@ -29,6 +29,7 @@ export default class App extends React.Component {
   }
 
   updateQuote() {
+    // eslint-disable-next-line no-undef
     const quotes = require('./quotes.json');
     console.log(quotes);
     const { quote, author, image } = quotes[this.randInt(0, quotes.length)];
