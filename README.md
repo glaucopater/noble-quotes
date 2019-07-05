@@ -1,1 +1,3 @@
-# Nobe quotes
+# Nobel quotes
+
+Noblesse Oblige...
