@@ -8,9 +8,8 @@ import {
   ImageBackground
 } from "react-native";
 import Constants from "expo-constants";
-
+import { Base64 } from "./utils";
 const baseImagePath = "./assets/avatars/";
-
 import { AVATARS } from "./avatars";
 
 export default class App extends React.Component {
@@ -61,7 +60,9 @@ export default class App extends React.Component {
                 uri: AVATARS[this.state.author.toLowerCase()]
               }}
             />
-            <Text style={styles.paragraph}>"{this.state.quote}"</Text>
+            <Text style={styles.paragraph}>
+              "{Base64.atob(this.state.quote)}"
+            </Text>
             <Text style={styles.paragraph}>{this.state.author} </Text>
           </View>
         </ImageBackground>
@@ -88,8 +89,6 @@ const styles = StyleSheet.create({
   },
   background: {
     height: "100%",
-    borderWidth: 1,
-    borderColor: "#fff",
     backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
