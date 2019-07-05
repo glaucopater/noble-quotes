@@ -1,15 +1,15 @@
 {
-  "name": "noble-quotes",
+  "name": "noble-quotes-test",
   "version": "0.0.0",
-  "description": "No description",
-  "author": "Glauco Pater",
+  "description": "glaucopater/noble-quotes @ Jul 5, 2019",
+  "author": null,
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "braces": "^3.0.2",
     "expo": "^33.0.0",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "braces": "^3.0.2",
     "ws": "^7.0.1"
   }
 }

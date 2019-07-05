@@ -9,13 +9,17 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 
+const baseImagePath = './assets/avatars/';
+
+import { AVATARS } from "./avatars";
+
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       author: 'a',
       quote: 'b',
-      image: 'https://api.adorable.io/avatars/194/abott@adorable.png',
+      image: 'gigio.jpg',
     };
     this.onPress = this.onPress.bind(this);
   }
@@ -29,11 +33,12 @@ export default class App extends React.Component {
   }
 
   updateQuote() {
-    // eslint-disable-next-line no-undef
     const quotes = require('./quotes.json');
-    console.log(quotes);
-    const { quote, author, image } = quotes[this.randInt(0, quotes.length)];
-    this.setState({ quote, author, image });
+    const authors = require('./authors.json');
+    const { quote, author } = quotes[this.randInt(0, quotes.length)];
+    const { image } = authors.filter(a => a.name === author)[0];
+    const newQuote = { quote, author, image };
+    this.setState(newQuote);
   }
 
   componentDidMount() {
@@ -41,6 +46,10 @@ export default class App extends React.Component {
   }
 
   render() {
+    const avatar = this.state.image
+      ? `${baseImagePath}${this.state.image}`
+      : '';
+    console.log(this.state, avatar, typeof avatar);
     return (
       <TouchableOpacity
         style={styles.container}
@@ -48,7 +57,12 @@ export default class App extends React.Component {
         underlayColor={'none'}>
         <ImageBackground style={styles.background}>
           <View>
-            <Image style={styles.avatar} source={{ uri: this.state.image }} />
+            <Image
+              style={styles.avatar}
+              source={{
+                uri: AVATARS[this.state.author.toLowerCase()],
+              }}
+            />
             <Text style={styles.paragraph}>"{this.state.quote}"</Text>
             <Text style={styles.paragraph}>{this.state.author} </Text>
           </View>
@@ -72,6 +86,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontWeight: 'bold',
     textAlign: 'right',
+    fontStyle: 'italic'
   },
   background: {
     height: '100%',
@@ -84,7 +99,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     height: 200,
-    width: 200,    
+    width: 200,
     alignSelf: 'center',
   },
 });
