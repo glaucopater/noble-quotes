@@ -1,15 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   Image,
-  ImageBackground,
-} from 'react-native';
-import Constants from 'expo-constants';
+  ImageBackground
+} from "react-native";
+import Constants from "expo-constants";
 
-const baseImagePath = './assets/avatars/';
+const baseImagePath = "./assets/avatars/";
 
 import { AVATARS } from "./avatars";
 
@@ -17,9 +17,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      author: 'a',
-      quote: 'b',
-      image: 'gigio.jpg',
+      author: "",
+      quote: ""
     };
     this.onPress = this.onPress.bind(this);
   }
@@ -33,11 +32,9 @@ export default class App extends React.Component {
   }
 
   updateQuote() {
-    const quotes = require('./quotes.json');
-    const authors = require('./authors.json');
+    const quotes = require("./quotes.json");
     const { quote, author } = quotes[this.randInt(0, quotes.length)];
-    const { image } = authors.filter(a => a.name === author)[0];
-    const newQuote = { quote, author, image };
+    const newQuote = { quote, author };
     this.setState(newQuote);
   }
 
@@ -48,19 +45,20 @@ export default class App extends React.Component {
   render() {
     const avatar = this.state.image
       ? `${baseImagePath}${this.state.image}`
-      : '';
+      : "";
     console.log(this.state, avatar, typeof avatar);
     return (
       <TouchableOpacity
         style={styles.container}
         onPress={this.onPress}
-        underlayColor={'none'}>
+        underlayColor={"none"}
+      >
         <ImageBackground style={styles.background}>
           <View>
             <Image
               style={styles.avatar}
               source={{
-                uri: AVATARS[this.state.author.toLowerCase()],
+                uri: AVATARS[this.state.author.toLowerCase()]
               }}
             />
             <Text style={styles.paragraph}>"{this.state.quote}"</Text>
@@ -75,31 +73,31 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
+    justifyContent: "center",
+    alignContent: "center",
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#000',
+    backgroundColor: "#000"
   },
   paragraph: {
     margin: 24,
     fontSize: 18,
-    color: '#FFF',
-    fontWeight: 'bold',
-    textAlign: 'right',
-    fontStyle: 'italic'
+    color: "#FFF",
+    fontWeight: "bold",
+    textAlign: "right",
+    fontStyle: "italic"
   },
   background: {
-    height: '100%',
+    height: "100%",
     borderWidth: 1,
-    borderColor: '#fff',
-    backgroundColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
+    borderColor: "#fff",
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column"
   },
   avatar: {
     height: 200,
     width: 200,
-    alignSelf: 'center',
-  },
+    alignSelf: "center"
+  }
 });
