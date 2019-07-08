@@ -6,10 +6,11 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
+    "braces": "^3.0.2",
     "expo": "^33.0.0",
+    "mem": "^5.1.1",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "braces": "^3.0.2",
     "ws": "^7.0.1"
   }
 }
